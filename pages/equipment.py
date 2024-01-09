@@ -11,7 +11,7 @@ import pandas as pd
 
 
 def app():
-    st.title('Muliphase Flow Estimation')
+    st.title('Multiphase Flow Estimation')
     st.header('Dados de Entrada')
 
     def show_pdf(file_path):
