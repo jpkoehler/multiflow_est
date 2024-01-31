@@ -8,6 +8,8 @@ from libs.beggs_and_brill import beggs_brill_flow
 
 
 def app():
+    chen_result = []
+    beggs_and_brill_result = []
     st.title('Multiphase Flow Estimation')
     st.header('Dados de Entrada')
 
@@ -29,22 +31,20 @@ def app():
             chen_result = chen_flow(IP, Pe, Psep, diam, L, depth)
             beggs_and_brill_result = beggs_brill_flow(
                 IP, Pe, Psep, diam, L, depth, RGO)
-            time.sleep(2)
+            dataknock = pd.DataFrame(
+                [["PW Calc", str("{:.0f}".format(chen_result[0]))],
+                 ["Well Prod Barrels", str("{:.0f}".format(chen_result[1]))],
+                 ],
+                columns=['Chen Flow', 'Value'])
+            dataknock.index += 1
+            st.table(dataknock)
+
+            dataknock = pd.DataFrame(
+                [["PW Calc", str("{:.0f}".format(beggs_and_brill_result[0]))],
+                 ["Well Prod Barrels", str(
+                     "{:.0f}".format(beggs_and_brill_result[1]))],
+                 ],
+                columns=['Beggs and Brill', 'Value'])
+            dataknock.index += 1
+            st.table(dataknock)
         st.success('Sucesso!')
-
-    dataknock = pd.DataFrame(
-        [["PW Calc", str("{:.0f}".format(chen_result[0]))],
-         ["Well Prod Barrels", str("{:.0f}".format(chen_result[1]))],
-         ],
-        columns=['Chen Flow', 'Value'])
-    dataknock.index += 1
-    st.table(dataknock)
-
-    dataknock = pd.DataFrame(
-        [["PW Calc", str("{:.0f}".format(beggs_and_brill_result[0]))],
-         ["Well Prod Barrels", str(
-             "{:.0f}".format(beggs_and_brill_result[1]))],
-         ],
-        columns=['Beggs and Brill', 'Value'])
-    dataknock.index += 1
-    st.table(dataknock)
