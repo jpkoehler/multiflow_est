@@ -156,9 +156,6 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
         countpw1.append(pwcalc1)
         countpw2.append(pwcalc2)
         countqoil.append(q_oil)
-        print(pwcalc1)
-        print(pwcalc2)
-        print(q_oil)
 
     wellprod = q_oil * 86400  # m³/dia
     wellprodbarrel = wellprod * 6.2898  # barril/dia
