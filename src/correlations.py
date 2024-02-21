@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from lib.chen_flow import chen_flow
 from lib.beggs_and_brill import beggs_brill_flow
+from lib.hagedorn_brown_flow import hagedorn_brown_flow
 
 
 def app():
@@ -29,8 +30,13 @@ def app():
     if (button1):
         with st.spinner('Processando...'):
             chen_result = chen_flow(IP, Pe, Psep, diam, L, depth)
-            """ beggs_and_brill_result = beggs_brill_flow(
+
+            beggs_and_brill_result = beggs_brill_flow(
+                IP, Pe, Psep, diam, L, depth, RGO)
+
+            """ hagedorn_brow_result = hagedorn_brown_flow(
                 IP, Pe, Psep, diam, L, depth, RGO) """
+
             dataknock = pd.DataFrame(
                 [["PW Calc", str("{:.0f}".format(chen_result[0]))],
                  ["Well Prod Barrels", str("{:.0f}".format(chen_result[1]))],
@@ -39,12 +45,22 @@ def app():
             dataknock.index += 1
             st.table(dataknock)
 
-            """ dataknock = pd.DataFrame(
+            dataknock = pd.DataFrame(
                 [["PW Calc", str("{:.0f}".format(beggs_and_brill_result[0]))],
                  ["Well Prod Barrels", str(
                      "{:.0f}".format(beggs_and_brill_result[1]))],
                  ],
                 columns=['Beggs and Brill', 'Value'])
             dataknock.index += 1
+            st.table(dataknock)
+
+            """ dataknock = pd.DataFrame(
+                [["PW Calc", str("{:.0f}".format(hagedorn_brow_result[0]))],
+                 ["Well Prod Barrels", str(
+                     "{:.0f}".format(hagedorn_brow_result[1]))],
+                 ],
+                columns=['Hagedorn Brown', 'Value'])
+            dataknock.index += 1
             st.table(dataknock) """
+
         st.success('Sucesso!')

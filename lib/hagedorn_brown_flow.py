@@ -1,5 +1,6 @@
 import math
 from scipy.interpolate import CubicSpline
+import csv
 
 def HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, rgo):
     # Fluid data input
@@ -13,7 +14,7 @@ def HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, rgo):
     qguess = 0.01  # (m³/s)
     v = (4 * qguess) / (math.pi * (D ** 2))
     Re = (D * ro * v) / mi
-    tol = 0.1
+    tol = 1
     epsilon = roughness / D
 
     # Iteration for Nodal Analysis
@@ -70,3 +71,91 @@ def HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, rgo):
     wellprodbarrel = wellprod * 6.2898  # barril/dia
 
     return [pwcalc1, wellprodbarrel]
+
+#Reading data from input file (pressures, Gaslift rate)
+file_path = "database/data_input.csv"
+existing_data = []
+with open(file_path, mode='r') as file:
+    reader = csv.reader(file)
+    existing_data = list(reader)
+
+#Naming result column
+existing_data[0].append("flowrate por H&B")
+
+#Reading csv for H&B Correlation graphs
+#Graph 1 - Psi Factor
+file_path_graph1 = "database/psi_factor.csv"
+graph1data = []
+with open(file_path_graph1, mode='r') as file:
+    reader = csv.reader(file)
+    graph1data = list(reader)
+print(graph1data)
+xgraph1=[]
+ygraph1=[]
+for i in range(1,len(graph1data)):
+    xgraph1.append(graph1data[i][0])
+    ygraph1.append(graph1data[i][1])
+
+#Função do gráfico por Interpolação de Spline Cúbica para dados do gráfico 1
+psi_factor = CubicSpline(xgraph1, ygraph1)
+
+#Graph 2 - CNl
+file_path_graph2 = "database/cnlcalc.csv"
+graph2data = []
+with open(file_path_graph2, mode='r') as file:
+    reader = csv.reader(file)
+    graph2data = list(reader)
+print(graph2data)
+xgraph2=[]
+ygraph2=[]
+for i in range(1,len(graph2data)):
+    xgraph2.append(graph2data[i][0])
+    ygraph2.append(graph2data[i][1])
+
+#Função do gráfico por Interpolação de Spline Cúbica para dados do gráfico 2
+cnlcalc = CubicSpline(xgraph2, ygraph2)
+
+#Graph 3 - Holdup líq/psi
+file_path_graph3 = "database/holdup_psi.csv"
+graph3data = []
+with open(file_path_graph3, mode='r') as file:
+    reader = csv.reader(file)
+    graph3data = list(reader)
+print(graph3data)
+xgraph3=[]
+ygraph3=[]
+for i in range(1,len(graph3data)):
+    xgraph3.append(graph3data[i][0])
+    ygraph3.append(graph3data[i][1])
+
+#Função do gráfico por Interpolação de Spline Cúbica para dados do gráfico 3
+holdup_psi = CubicSpline(xgraph3, ygraph3)
+
+
+#Well data input
+IP = 50
+Pe = 250
+Psep = 10
+RGO = 50
+Diam = 6
+L = 2000
+depth = 2000
+#print(HagedornBrownFlow(IP,Pe,Psep,Diam,L,depth,RGO))
+
+
+#Número de linhas lidas no csv, linha 0 é titulos
+linhas = len(existing_data)
+
+#Filling csv file with results
+for i in range(1,linhas):
+    Pei = float(existing_data[i][1])
+    Psepi = float(existing_data[i][2])
+    rowresult = HagedornBrownFlow(IP, Pei, Psepi, Diam, L, depth, RGO)
+    existing_data[i].append(rowresult[1])
+
+print(existing_data)
+
+with open(file_path, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(existing_data)
+
