@@ -29,8 +29,7 @@ def app():
         with st.spinner('Processando...'):
             chen_result = chen_flow(IP, Pe, Psep, diam, L, depth)
 
-            """ beggs_and_brill_result = beggs_brill_flow(
-                IP, Pe, Psep, diam, L, depth, RGO) """
+            beggs_and_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO)
 
             """ hagedorn_brow_result = hagedorn_brown_flow(
                 IP, Pe, Psep, diam, L, depth, RGO) """
@@ -43,14 +42,14 @@ def app():
             dataknock.index += 1
             st.table(dataknock)
 
-            """ dataknock = pd.DataFrame(
-                [["PW Calc", str("{:.0f}".format(beggs_and_brill_result[0]))],
-                 ["Well Prod Barrels", str(
+            dataknock = pd.DataFrame(
+                [["Wellhead Pressure (bara)", str("{:.0f}".format(beggs_and_brill_result[0]))],
+                 ["Well Prod (Barrels/day)", str(
                      "{:.0f}".format(beggs_and_brill_result[1]))],
                  ],
                 columns=['Beggs and Brill', 'Value'])
             dataknock.index += 1
-            st.table(dataknock) """
+            st.table(dataknock) 
 
             """ dataknock = pd.DataFrame(
                 [["PW Calc", str("{:.0f}".format(hagedorn_brow_result[0]))],
