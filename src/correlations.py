@@ -36,8 +36,8 @@ def app():
                 IP, Pe, Psep, diam, L, depth, RGO) """
 
             dataknock = pd.DataFrame(
-                [["PW Calc", str("{:.0f}".format(chen_result[0]))],
-                 ["Well Prod Barrels", str("{:.0f}".format(chen_result[1]))],
+                [["Wellhead Pressure (bara)", str("{:.0f}".format(chen_result[0]))],
+                 ["Well Production (Barrels/day)", str("{:.0f}".format(chen_result[1]))],
                  ],
                 columns=['Chen Flow', 'Value'])
             dataknock.index += 1
