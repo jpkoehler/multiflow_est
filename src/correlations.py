@@ -61,7 +61,7 @@ def app():
             dataknock.index += 1
             st.table(dataknock) """
             
-    button2 = st.button('Calculate H&B')
+    """button2 = st.button('Calculate H&B')
 
     if st.session_state.get('button2') != True:
         st.session_state['button2'] = button1
@@ -77,6 +77,6 @@ def app():
                  ],
                 columns=['Beggs and Brill', 'Value'])
             dataknock.index += 1
-            st.table(dataknock) 
+            st.table(dataknock) """
 
         st.success('Sucesso!')
