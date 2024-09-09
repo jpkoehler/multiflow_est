@@ -93,7 +93,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     qguess = 0.01   #(m³/s)
     v = (4 * qguess) / (math.pi * (D ** 2))
     Re = (D * ro * v) / mi
-    tol = 1
+    tol = 10
     epsilon = roughness / D
     angle = 90
 
@@ -106,7 +106,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     countit = []
     countqoil = []
     while abs(pwcalc2 - pwcalc1) > tol:
-        qguess = qguess + 0.001
+        qguess = qguess + 0.01
         q_gas = qguess*rgo
         q_oil = qguess
         A_pipe = math.pi * (D ** 2) / 4
