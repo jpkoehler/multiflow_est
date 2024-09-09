@@ -106,7 +106,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     countit = []
     countqoil = []
     while abs(pwcalc2 - pwcalc1) > tol:
-        qguess = qguess + 0.01
+        qguess = qguess + 0.1
         q_gas = qguess*rgo
         q_oil = qguess
         A_pipe = math.pi * (D ** 2) / 4
