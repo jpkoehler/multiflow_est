@@ -11,15 +11,15 @@ def app():
     chen_result = []
     beggs_and_brill_result = []
     st.title('Multiphase Flow Estimation')
-    st.header('Dados de Entrada')
+    st.header('Input Data')
 
-    IP = st.number_input('IP:', 1.0, 100.0, 28.0, step=0.1)
-    Pe = st.number_input('Pe:', 1.0, 1000.0, 120.0, step=0.1)
-    RGO = st.number_input('RGO:', 1.0, 1000.0, 280.0, step=0.1)
-    Psep = st.number_input('Psep:', 0.0, 100.0,  10.0, step=0.1)
-    diam = st.number_input('Diameter:', 0.0, 20.0,  8.0, step=0.1)
-    L = st.number_input('Length:', 0.0, 10000.0,  2000.0, step=0.1)
-    depth = st.number_input('Depth:', 0.0, 10000.0,  1000.0, step=0.1)
+    IP = st.number_input('Productivity Index []:', 1.0, 100.0, 28.0, step=0.1)
+    Pe = st.number_input('Reservoir Pressure [Bara]:', 1.0, 1000.0, 120.0, step=0.1)
+    RGO = st.number_input('Gas-Oil Ratio (GOR)[m³/m³]:', 1.0, 1000.0, 280.0, step=0.1)
+    Psep = st.number_input('Separator Pressure [Bara]:', 0.0, 100.0,  10.0, step=0.1)
+    diam = st.number_input('Flowline Diameter[inch]:', 0.0, 20.0,  8.0, step=0.1)
+    L = st.number_input('Flowline Length[Meters]:', 0.0, 10000.0,  2000.0, step=0.1)
+    depth = st.number_input('Reservoir Depth[Meters]:', 0.0, 10000.0,  1000.0, step=0.1)
 
     button1 = st.button('Calculate Chen')
 
