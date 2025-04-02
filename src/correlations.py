@@ -33,8 +33,7 @@ def app():
 
             """ beggs_and_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO) """
 
-            """ hagedorn_brow_result = hagedorn_brown_flow(
-                IP, Pe, Psep, diam, L, depth, RGO) """
+            
 
             dataknock = pd.DataFrame(
                 [["Wellhead Pressure (bara)", str("{:.0f}".format(chen_result[0]))],
@@ -62,14 +61,35 @@ def app():
             dataknock.index += 1
             st.table(dataknock) """
             
-    """button2 = st.button('Calculate H&B')
+    button2 = st.button('Calculate H&B')
 
     if st.session_state.get('button2') != True:
         st.session_state['button2'] = button1
 
     if (button2):
         with st.spinner('Processando...'):
-            beggs_and_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO)
+            hagedorn_brow_result = HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, RGO)
+
+             dataknock = pd.DataFrame(
+                [["PW Calc", str("{:.0f}".format(hagedorn_brow_result[0]))],
+                 ["Well Prod Barrels", str(
+                     "{:.0f}".format(hagedorn_brow_result[1]))],
+                 ],
+                columns=['Hagedorn Brown', 'Value'])
+            dataknock.index += 1
+            st.table(dataknock)
+
+
+
+
+
+
+
+
+
+
+            
+            """beggs_and_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO)
 
             dataknock = pd.DataFrame(
                 [["Wellhead Pressure (bara)", str("{:.0f}".format(beggs_and_brill_result[0]))],
@@ -80,4 +100,4 @@ def app():
             dataknock.index += 1
             st.table(dataknock) """
 
-    st.success('Sucesso!')
+    "st.success('Sucesso!')"
