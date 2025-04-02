@@ -5,13 +5,16 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from lib.chen_flow import chen_flow
 from lib.hagedorn_brown_flow import HagedornBrownFlow
+from lib.beggs_and_brill import flow_regime, liq_holdup, beggs_brill_flow
 
 def app():
-    # Inicializa as variáveis na sessão se ainda não existirem
     if 'chen_result' not in st.session_state:
         st.session_state.chen_result = None
     if 'hagedorn_brown_result' not in st.session_state:
         st.session_state.hagedorn_brown_result = None
+    if 'beggs_brill_result' not in st.session_state:
+        st.session_state.beggs_brill_result = None
+
 
     st.title('Multiphase Flow Estimation')
     st.header('Input Data')
@@ -25,17 +28,21 @@ def app():
     depth = st.number_input('Reservoir Depth[Meters]:', 0.0, 10000.0, 1000.0, step=0.1)
 
     button1 = st.button('Calculate Chen')
-    button2 = st.button('Calculate H&B')
+    button2 = st.button('Calculate Hagedorn & Brown')
+    button2 = st.button('Calculate Beggs & Brill')
 
     if button1:
-        with st.spinner('Processando...'):
+        with st.spinner('Processing...'):
             st.session_state.chen_result = chen_flow(IP, Pe, Psep, diam, L, depth)
 
     if button2:
-        with st.spinner('Processando...'):
+        with st.spinner('Processing...'):
             st.session_state.hagedorn_brown_result = HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, RGO)
+            
+    if button3:
+        with st.spinner('Processing...'):
+            st.session_state.beggs_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO) 
 
-    # Exibe a tabela do modelo Chen, se os dados existirem
     if st.session_state.chen_result:
         dataknock = pd.DataFrame(
             [["Wellhead Pressure (bara)", str("{:.0f}".format(st.session_state.chen_result[0]))],
@@ -45,7 +52,6 @@ def app():
         dataknock.index += 1
         st.table(dataknock)
 
-    # Exibe a tabela do modelo Hagedorn & Brown, se os dados existirem
     if st.session_state.hagedorn_brown_result:
         dataknock = pd.DataFrame(
             [["Wellhead Pressure (bara)", str("{:.0f}".format(st.session_state.hagedorn_brown_result[0]))],
@@ -55,6 +61,14 @@ def app():
         dataknock.index += 1
         st.table(dataknock)
 
-# Para rodar o app no Streamlit, basta chamar a função
+    if st.session_state.beggs_brill_result:
+        dataknock = pd.DataFrame(
+            [["Wellhead Pressure (bara)", str("{:.0f}".format(st.session_state.beggs_brill_result[0]))],
+             ["Well Production (Barrels/day)", str("{:.0f}".format(st.session_state.beggs_brill_result[1]))],
+             ],
+            columns=['Beggs & Brill Flow', 'Value'])
+        dataknock.index += 1
+        st.table(dataknock)
+
 if __name__ == "__main__":
     app()
