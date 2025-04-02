@@ -71,13 +71,13 @@ def app():
             hagedorn_brow_result = HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, RGO)
 
              dataknock = pd.DataFrame(
-                [["PW Calc", str("{:.0f}".format(hagedorn_brow_result[0]))],
-                 ["Well Prod Barrels", str(
+                 [["PW Calc", str("{:.0f}".format(hagedorn_brow_result[0]))],
+                  ["Well Prod Barrels", str(
                      "{:.0f}".format(hagedorn_brow_result[1]))],
-                 ],
-                columns=['Hagedorn Brown', 'Value'])
-            dataknock.index += 1
-            st.table(dataknock)
+                  ],
+                 columns=['Hagedorn Brown', 'Value'])
+             dataknock.index += 1
+             st.table(dataknock)
 
 
 
