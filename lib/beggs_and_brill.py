@@ -93,7 +93,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     qguess = 0.01   #(m³/s)
     v = (4 * qguess) / (math.pi * (D ** 2))
     Re = (D * ro * v) / mi
-    tol = 10
+    tol = 1
     epsilon = roughness / D
     angle = 90
     max_iterations = 10000  
