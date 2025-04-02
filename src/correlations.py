@@ -4,6 +4,7 @@ from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
 import pandas as pd
 from lib.chen_flow import chen_flow
+from lib.hagedorn_brown_flow import HagedornBrownFlow
 from lib.beggs_and_brill import flow_regime, liq_holdup, beggs_brill_flow
 
 
