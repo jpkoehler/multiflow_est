@@ -5,7 +5,7 @@ def chen_flow(IP, Pe, Psep, diam, L, depth):
     mi = 0.002
     roughness = 0.000045
     D = diam * 0.0254
-    qguess = 0.0000001
+    qguess = Pe * IP / 86400
     v = (4 * qguess) / (math.pi * (D ** 2))
     Re = (D * ro * v) / mi
     fatrito = (1 / (-2 * math.log10(((roughness / D) / 3.7065) - (5.0452 / Re) * math.log10(
