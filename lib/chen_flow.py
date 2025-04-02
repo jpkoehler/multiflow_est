@@ -18,7 +18,7 @@ def chen_flow(IP, Pe, Psep, diam, L, depth):
     wellprodbarrel = 0
 
     while abs(pwcalc1) - abs(pwcalc2) < tol:
-        qguess += 0.001
+        qguess += 0.000001
         v = (4 * qguess) / (math.pi * (D ** 2))
         Re = (D * ro * v) / mi
         fatrito = (1 / (-2 * math.log10(((roughness / D) / 3.7065) - (5.0452 / Re) * math.log10(
