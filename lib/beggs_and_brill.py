@@ -96,6 +96,8 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     tol = 10
     epsilon = roughness / D
     angle = 90
+    max_iterations = 1000  
+    iterations = 0
 
     #Iteration for Nodal Analysis
     pwcalc1 = 0
@@ -105,7 +107,10 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     countpw2 = []
     countit = []
     countqoil = []
-    while abs(pwcalc2 - pwcalc1) > tol:
+    while abs(pwcalc2 - pwcalc1) > tol  and iterations < max_iterations:
+        iterations += 1
+        if iterations == max_iterations:
+            print("Atenção: Iteração máxima atingida, possível falha na convergência.")
         qguess = qguess + 0.001
         q_gas = qguess*rgo
         q_oil = qguess
