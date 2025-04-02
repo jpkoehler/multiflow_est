@@ -31,7 +31,7 @@ def app():
         with st.spinner('Processando...'):
             chen_result = chen_flow(IP, Pe, Psep, diam, L, depth)
 
-            """ beggs_and_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO) """
+             beggs_and_brill_result = beggs_brill_flow(IP, Pe, Psep, diam, L, depth, RGO) 
 
             
 
@@ -43,7 +43,7 @@ def app():
             dataknock.index += 1
             st.table(dataknock)
 
-            """ dataknock = pd.DataFrame(
+             dataknock = pd.DataFrame(
                 [["Wellhead Pressure (bara)", str("{:.0f}".format(beggs_and_brill_result[0]))],
                  ["Well Prod (Barrels/day)", str(
                      "{:.0f}".format(beggs_and_brill_result[1]))],
@@ -59,7 +59,7 @@ def app():
                  ],
                 columns=['Hagedorn Brown', 'Value'])
             dataknock.index += 1
-            st.table(dataknock) """
+            st.table(dataknock) 
             
     button2 = st.button('Calculate H&B')
 
