@@ -96,7 +96,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     tol = 0.1
     epsilon = roughness / D
     angle = 90
-    max_iterations = 10000  
+    max_iterations = 1000000  
     iterations = 0
 
     #Iteration for Nodal Analysis
