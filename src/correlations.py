@@ -66,19 +66,18 @@ def app():
     if st.session_state.get('button2') != True:
         st.session_state['button2'] = button1
 
+
     if (button2):
         with st.spinner('Processando...'):
             hagedorn_brow_result = HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, RGO)
 
-             dataknock = pd.DataFrame(
+            dataknock = pd.DataFrame(  # <-- Essa linha estava um nível a mais de indentação
                 [["Wellhead Pressure (bara)", str("{:.0f}".format(hagedorn_brow_result[0]))],
                  ["Well Production (Barrels/day)", str("{:.0f}".format(hagedorn_brow_result[1]))],
                  ],
                 columns=['Hagedorn & Brown Flow', 'Value'])
             dataknock.index += 1
             st.table(dataknock)
-
-
 
 
 
