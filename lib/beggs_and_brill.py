@@ -111,7 +111,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
         iterations += 1
         if iterations == max_iterations:
             print("Atenção: Iteração máxima atingida, possível falha na convergência.")
-        qguess = qguess + 0.001
+        qguess = qguess + 0.00001
         q_gas = qguess*rgo
         q_oil = qguess
         A_pipe = math.pi * (D ** 2) / 4
