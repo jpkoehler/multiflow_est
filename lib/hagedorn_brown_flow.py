@@ -72,15 +72,6 @@ def HagedornBrownFlow(IP, Pe, Psep, diam, L, depth, rgo):
 
     return [pwcalc1, wellprodbarrel]
 
-#Reading data from input file (pressures, Gaslift rate)
-file_path = "database/data_input.csv"
-existing_data = []
-with open(file_path, mode='r') as file:
-    reader = csv.reader(file)
-    existing_data = list(reader)
-
-#Naming result column
-existing_data[0].append("flowrate por H&B")
 
 #Reading csv for H&B Correlation graphs
 #Graph 1 - Psi Factor
@@ -131,31 +122,4 @@ for i in range(1,len(graph3data)):
 #Função do gráfico por Interpolação de Spline Cúbica para dados do gráfico 3
 holdup_psi = CubicSpline(xgraph3, ygraph3)
 
-
-#Well data input
-IP = 50
-Pe = 250
-Psep = 10
-RGO = 50
-Diam = 6
-L = 2000
-depth = 2000
-#print(HagedornBrownFlow(IP,Pe,Psep,Diam,L,depth,RGO))
-
-
-#Número de linhas lidas no csv, linha 0 é titulos
-linhas = len(existing_data)
-
-#Filling csv file with results
-for i in range(1,linhas):
-    Pei = float(existing_data[i][1])
-    Psepi = float(existing_data[i][2])
-    rowresult = HagedornBrownFlow(IP, Pei, Psepi, Diam, L, depth, RGO)
-    existing_data[i].append(rowresult[1])
-
-print(existing_data)
-
-with open(file_path, mode='w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerows(existing_data)
 
