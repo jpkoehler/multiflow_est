@@ -90,7 +90,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     sigma = 0.020 #(N/m)
     roughness = 0.000045 #(m)
     D = diam * 0.0254  #(m)
-    qguess = 0.01   #(m³/s)
+    qguess = Pe * IP / 86400   #(m³/s)
     v = (4 * qguess) / (math.pi * (D ** 2))
     Re = (D * ro * v) / mi
     tol = 0.1
