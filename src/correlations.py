@@ -29,7 +29,7 @@ def app():
 
     button1 = st.button('Calculate Chen')
     button2 = st.button('Calculate Hagedorn & Brown')
-    button2 = st.button('Calculate Beggs & Brill')
+    button3 = st.button('Calculate Beggs & Brill')
 
     if button1:
         with st.spinner('Processing...'):
