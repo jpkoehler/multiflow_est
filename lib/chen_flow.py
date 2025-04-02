@@ -17,7 +17,7 @@ def chen_flow(IP, Pe, Psep, diam, L, depth):
     wellprod = qguess * 86400
     wellprodbarrel = 0
 
-    while abs(pwcalc1) - abs(pwcalc2) < tol:
+    while abs(pwcalc2 - pwcalc1) > tol:
         qguess += 0.000001
         v = (4 * qguess) / (math.pi * (D ** 2))
         Re = (D * ro * v) / mi
