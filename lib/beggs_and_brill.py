@@ -90,10 +90,10 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
     sigma = 0.020 #(N/m)
     roughness = 0.000045 #(m)
     D = diam * 0.0254  #(m)
-    qguess = Pe * IP / 86400   #(m³/s)
+    qguess = 0.01   #(m³/s)
     v = (4 * qguess) / (math.pi * (D ** 2))
     Re = (D * ro * v) / mi
-    tol = 0.1
+    tol = 10
     epsilon = roughness / D
     angle = 90
     max_iterations = 1000000  
@@ -111,7 +111,7 @@ def beggs_brill_flow(IP, Pe, Psep, diam, L, depth, rgo):
         iterations += 1
         if iterations == max_iterations:
             print("Atenção: Iteração máxima atingida, possível falha na convergência.")
-        qguess = qguess + 0.0000001
+        qguess = qguess + 0.0001
         q_gas = qguess*rgo
         q_oil = qguess
         A_pipe = math.pi * (D ** 2) / 4
