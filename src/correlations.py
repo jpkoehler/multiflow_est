@@ -19,7 +19,7 @@ def app():
     st.title('Multiphase Flow Estimation')
     st.header('Input Data')
 
-    IP = st.number_input('Productivity Index []:', 1.0, 100.0, 28.0, step=0.1)
+    IP = st.number_input('Productivity Index [Sm³/(d.Bara)]:', 1.0, 100.0, 28.0, step=0.1)
     Pe = st.number_input('Reservoir Pressure [Bara]:', 1.0, 1000.0, 120.0, step=0.1)
     RGO = st.number_input('Gas-Oil Ratio (GOR)[m³/m³]:', 1.0, 1000.0, 280.0, step=0.1)
     Psep = st.number_input('Separator Pressure [Bara]:', 0.0, 100.0, 10.0, step=0.1)
@@ -72,3 +72,4 @@ def app():
 
 if __name__ == "__main__":
     app()
+
